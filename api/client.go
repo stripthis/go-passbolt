@@ -32,7 +32,7 @@ type Client struct {
 	userID         string
 
 	// used for solving MFA challenges. You can block this to for example wait for user input.
-	// You shouden't run any unrelated API Calls while you are in this callback.
+	// You shouldn't run any unrelated API Calls while you are in this callback.
 	// You need to Return the Cookie that Passbolt expects to verify you MFA, usually it is called passbolt_mfa
 	MFACallback func(ctx context.Context, c *Client, res *APIResponse) (http.Cookie, error)
 
@@ -40,8 +40,8 @@ type Client struct {
 	Debug bool
 }
 
-// PublicKeyReponse the Body of a Public Key Api Request
-type PublicKeyReponse struct {
+// PublicKeyResponse the Body of a Public Key Api Request
+type PublicKeyResponse struct {
 	Fingerprint string `json:"fingerprint"`
 	Keydata     string `json:"keydata"`
 }
@@ -195,7 +195,7 @@ func (c *Client) GetPublicKey(ctx context.Context) (string, string, error) {
 		return "", "", fmt.Errorf("Doing Request: %w", err)
 	}
 
-	var body PublicKeyReponse
+	var body PublicKeyResponse
 	err = json.Unmarshal(msg.Body, &body)
 	if err != nil {
 		return "", "", fmt.Errorf("Parsing JSON: %w", err)
