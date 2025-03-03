@@ -34,6 +34,7 @@ type Profile struct {
 	LastName  string `json:"last_name,omitempty"`
 	Created   *Time  `json:"created,omitempty"`
 	Modified  *Time  `json:"modified,omitempty"`
+	Avatar    Avatar `json:"avatar,omitempty"`
 }
 
 // GetUsersOptions are all available query parameters
